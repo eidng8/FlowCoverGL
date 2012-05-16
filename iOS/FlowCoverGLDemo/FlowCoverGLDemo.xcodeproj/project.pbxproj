@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		498F7B8315566B5D00D6351D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F7B8215566B5D00D6351D /* UIKit.framework */; };
+		498F7B8515566B5D00D6351D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F7B8415566B5D00D6351D /* Foundation.framework */; };
+		498F7B8715566B5D00D6351D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F7B8615566B5D00D6351D /* CoreGraphics.framework */; };
+		498F7B8D15566B5D00D6351D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 498F7B8B15566B5D00D6351D /* InfoPlist.strings */; };
+		498F7B9015566B5D00D6351D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F7B8F15566B5D00D6351D /* main.m */; };
+		498F7B9315566B5D00D6351D /* FlowCoverGLDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F7B9215566B5D00D6351D /* FlowCoverGLDemoAppDelegate.m */; };
+		498F7B9615566B5D00D6351D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498F7B9415566B5D00D6351D /* MainWindow.xib */; };
+		498F7B9915566B5D00D6351D /* FlowCoverGLDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F7B9815566B5D00D6351D /* FlowCoverGLDemoViewController.m */; };
+		498F7B9C15566B5D00D6351D /* FlowCoverGLDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 498F7B9A15566B5D00D6351D /* FlowCoverGLDemoViewController.xib */; };
+		498F7BC315566C3800D6351D /* libFlowCoverGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F7BC215566C3800D6351D /* libFlowCoverGL.a */; };
+		498F7BC615566C3800D6351D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F7BC415566C3800D6351D /* OpenGLES.framework */; };
+		498F7BC715566C3800D6351D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 498F7BC515566C3800D6351D /* QuartzCore.framework */; };
+		498F7BD51556BEA200D6351D /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BCB1556BEA200D6351D /* 0.jpg */; };
+		498F7BD61556BEA200D6351D /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BCC1556BEA200D6351D /* 1.jpg */; };
+		498F7BD71556BEA200D6351D /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BCD1556BEA200D6351D /* 2.jpg */; };
+		498F7BD81556BEA200D6351D /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BCE1556BEA200D6351D /* 3.jpg */; };
+		498F7BD91556BEA200D6351D /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BCF1556BEA200D6351D /* 4.jpg */; };
+		498F7BDA1556BEA200D6351D /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BD01556BEA200D6351D /* 5.jpg */; };
+		498F7BDB1556BEA200D6351D /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BD11556BEA200D6351D /* 6.jpg */; };
+		498F7BDC1556BEA200D6351D /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BD21556BEA200D6351D /* 7.jpg */; };
+		498F7BDD1556BEA200D6351D /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BD31556BEA200D6351D /* 8.jpg */; };
+		498F7BDE1556BEA200D6351D /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498F7BD41556BEA200D6351D /* 9.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		498F7BA915566BD500D6351D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F7BA215566BD500D6351D /* FlowCoverGL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 497EF41C1556560500C4266F;
+			remoteInfo = FlowCoverGL;
+		};
+		498F7BC815566C5000D6351D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498F7BA215566BD500D6351D /* FlowCoverGL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 497EF41B1556560500C4266F;
+			remoteInfo = FlowCoverGL;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		498F7B7E15566B5C00D6351D /* FlowCoverGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlowCoverGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		498F7B8215566B5D00D6351D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		498F7B8415566B5D00D6351D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		498F7B8615566B5D00D6351D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		498F7B8A15566B5D00D6351D /* FlowCoverGLDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FlowCoverGLDemo-Info.plist"; sourceTree = "<group>"; };
+		498F7B8C15566B5D00D6351D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		498F7B8E15566B5D00D6351D /* FlowCoverGLDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FlowCoverGLDemo-Prefix.pch"; sourceTree = "<group>"; };
+		498F7B8F15566B5D00D6351D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		498F7B9115566B5D00D6351D /* FlowCoverGLDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowCoverGLDemoAppDelegate.h; sourceTree = "<group>"; };
+		498F7B9215566B5D00D6351D /* FlowCoverGLDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowCoverGLDemoAppDelegate.m; sourceTree = "<group>"; };
+		498F7B9515566B5D00D6351D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		498F7B9715566B5D00D6351D /* FlowCoverGLDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlowCoverGLDemoViewController.h; sourceTree = "<group>"; };
+		498F7B9815566B5D00D6351D /* FlowCoverGLDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlowCoverGLDemoViewController.m; sourceTree = "<group>"; };
+		498F7B9B15566B5D00D6351D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FlowCoverGLDemoViewController.xib; sourceTree = "<group>"; };
+		498F7BA215566BD500D6351D /* FlowCoverGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FlowCoverGL.xcodeproj; path = ../FlowCoverGL/FlowCoverGL.xcodeproj; sourceTree = "<group>"; };
+		498F7BC215566C3800D6351D /* libFlowCoverGL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlowCoverGL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		498F7BC415566C3800D6351D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		498F7BC515566C3800D6351D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		498F7BCB1556BEA200D6351D /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
+		498F7BCC1556BEA200D6351D /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		498F7BCD1556BEA200D6351D /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		498F7BCE1556BEA200D6351D /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		498F7BCF1556BEA200D6351D /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		498F7BD01556BEA200D6351D /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		498F7BD11556BEA200D6351D /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		498F7BD21556BEA200D6351D /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		498F7BD31556BEA200D6351D /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		498F7BD41556BEA200D6351D /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		498F7B7B15566B5C00D6351D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				498F7BC315566C3800D6351D /* libFlowCoverGL.a in Frameworks */,
+				498F7BC615566C3800D6351D /* OpenGLES.framework in Frameworks */,
+				498F7BC715566C3800D6351D /* QuartzCore.framework in Frameworks */,
+				498F7B8315566B5D00D6351D /* UIKit.framework in Frameworks */,
+				498F7B8515566B5D00D6351D /* Foundation.framework in Frameworks */,
+				498F7B8715566B5D00D6351D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		498F7B7315566B5C00D6351D = {
+			isa = PBXGroup;
+			children = (
+				498F7BA215566BD500D6351D /* FlowCoverGL.xcodeproj */,
+				498F7B8815566B5D00D6351D /* FlowCoverGLDemo */,
+				498F7B8115566B5D00D6351D /* Frameworks */,
+				498F7B7F15566B5C00D6351D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		498F7B7F15566B5C00D6351D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				498F7B7E15566B5C00D6351D /* FlowCoverGLDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		498F7B8115566B5D00D6351D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				498F7BC215566C3800D6351D /* libFlowCoverGL.a */,
+				498F7BC415566C3800D6351D /* OpenGLES.framework */,
+				498F7BC515566C3800D6351D /* QuartzCore.framework */,
+				498F7B8215566B5D00D6351D /* UIKit.framework */,
+				498F7B8415566B5D00D6351D /* Foundation.framework */,
+				498F7B8615566B5D00D6351D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		498F7B8815566B5D00D6351D /* FlowCoverGLDemo */ = {
+			isa = PBXGroup;
+			children = (
+				498F7B9115566B5D00D6351D /* FlowCoverGLDemoAppDelegate.h */,
+				498F7B9215566B5D00D6351D /* FlowCoverGLDemoAppDelegate.m */,
+				498F7B9415566B5D00D6351D /* MainWindow.xib */,
+				498F7B9715566B5D00D6351D /* FlowCoverGLDemoViewController.h */,
+				498F7B9815566B5D00D6351D /* FlowCoverGLDemoViewController.m */,
+				498F7B9A15566B5D00D6351D /* FlowCoverGLDemoViewController.xib */,
+				498F7B8915566B5D00D6351D /* Supporting Files */,
+			);
+			path = FlowCoverGLDemo;
+			sourceTree = "<group>";
+		};
+		498F7B8915566B5D00D6351D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				498F7BCA1556BEA200D6351D /* images */,
+				498F7B8A15566B5D00D6351D /* FlowCoverGLDemo-Info.plist */,
+				498F7B8B15566B5D00D6351D /* InfoPlist.strings */,
+				498F7B8E15566B5D00D6351D /* FlowCoverGLDemo-Prefix.pch */,
+				498F7B8F15566B5D00D6351D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		498F7BA315566BD500D6351D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				498F7BAA15566BD500D6351D /* libFlowCoverGL.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		498F7BCA1556BEA200D6351D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				498F7BCB1556BEA200D6351D /* 0.jpg */,
+				498F7BCC1556BEA200D6351D /* 1.jpg */,
+				498F7BCD1556BEA200D6351D /* 2.jpg */,
+				498F7BCE1556BEA200D6351D /* 3.jpg */,
+				498F7BCF1556BEA200D6351D /* 4.jpg */,
+				498F7BD01556BEA200D6351D /* 5.jpg */,
+				498F7BD11556BEA200D6351D /* 6.jpg */,
+				498F7BD21556BEA200D6351D /* 7.jpg */,
+				498F7BD31556BEA200D6351D /* 8.jpg */,
+				498F7BD41556BEA200D6351D /* 9.jpg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		498F7B7D15566B5C00D6351D /* FlowCoverGLDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 498F7B9F15566B5D00D6351D /* Build configuration list for PBXNativeTarget "FlowCoverGLDemo" */;
+			buildPhases = (
+				498F7B7A15566B5C00D6351D /* Sources */,
+				498F7B7B15566B5C00D6351D /* Frameworks */,
+				498F7B7C15566B5C00D6351D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				498F7BC915566C5000D6351D /* PBXTargetDependency */,
+			);
+			name = FlowCoverGLDemo;
+			productName = FlowCoverGLDemo;
+			productReference = 498F7B7E15566B5C00D6351D /* FlowCoverGLDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		498F7B7515566B5C00D6351D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 498F7B7815566B5C00D6351D /* Build configuration list for PBXProject "FlowCoverGLDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 498F7B7315566B5C00D6351D;
+			productRefGroup = 498F7B7F15566B5C00D6351D /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 498F7BA315566BD500D6351D /* Products */;
+					ProjectRef = 498F7BA215566BD500D6351D /* FlowCoverGL.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				498F7B7D15566B5C00D6351D /* FlowCoverGLDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		498F7BAA15566BD500D6351D /* libFlowCoverGL.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFlowCoverGL.a;
+			remoteRef = 498F7BA915566BD500D6351D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		498F7B7C15566B5C00D6351D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				498F7B8D15566B5D00D6351D /* InfoPlist.strings in Resources */,
+				498F7B9615566B5D00D6351D /* MainWindow.xib in Resources */,
+				498F7B9C15566B5D00D6351D /* FlowCoverGLDemoViewController.xib in Resources */,
+				498F7BD51556BEA200D6351D /* 0.jpg in Resources */,
+				498F7BD61556BEA200D6351D /* 1.jpg in Resources */,
+				498F7BD71556BEA200D6351D /* 2.jpg in Resources */,
+				498F7BD81556BEA200D6351D /* 3.jpg in Resources */,
+				498F7BD91556BEA200D6351D /* 4.jpg in Resources */,
+				498F7BDA1556BEA200D6351D /* 5.jpg in Resources */,
+				498F7BDB1556BEA200D6351D /* 6.jpg in Resources */,
+				498F7BDC1556BEA200D6351D /* 7.jpg in Resources */,
+				498F7BDD1556BEA200D6351D /* 8.jpg in Resources */,
+				498F7BDE1556BEA200D6351D /* 9.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		498F7B7A15566B5C00D6351D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				498F7B9015566B5D00D6351D /* main.m in Sources */,
+				498F7B9315566B5D00D6351D /* FlowCoverGLDemoAppDelegate.m in Sources */,
+				498F7B9915566B5D00D6351D /* FlowCoverGLDemoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		498F7BC915566C5000D6351D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FlowCoverGL;
+			targetProxy = 498F7BC815566C5000D6351D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		498F7B8B15566B5D00D6351D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				498F7B8C15566B5D00D6351D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		498F7B9415566B5D00D6351D /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				498F7B9515566B5D00D6351D /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		498F7B9A15566B5D00D6351D /* FlowCoverGLDemoViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				498F7B9B15566B5D00D6351D /* en */,
+			);
+			name = FlowCoverGLDemoViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		498F7B9D15566B5D00D6351D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		498F7B9E15566B5D00D6351D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		498F7BA015566B5D00D6351D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FlowCoverGLDemo/FlowCoverGLDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../FlowCoverGL/**";
+				INFOPLIST_FILE = "FlowCoverGLDemo/FlowCoverGLDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		498F7BA115566B5D00D6351D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FlowCoverGLDemo/FlowCoverGLDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../FlowCoverGL/**";
+				INFOPLIST_FILE = "FlowCoverGLDemo/FlowCoverGLDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		498F7B7815566B5C00D6351D /* Build configuration list for PBXProject "FlowCoverGLDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				498F7B9D15566B5D00D6351D /* Debug */,
+				498F7B9E15566B5D00D6351D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		498F7B9F15566B5D00D6351D /* Build configuration list for PBXNativeTarget "FlowCoverGLDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				498F7BA015566B5D00D6351D /* Debug */,
+				498F7BA115566B5D00D6351D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 498F7B7515566B5C00D6351D /* Project object */;
+}
