@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FCImageCache.h"
 #import "FlowCoverViewGL.h"
 
 
-@interface FlowCoverGLDemoViewController : UIViewController<FlowCoverViewDelegate>
+@interface FlowCoverGLDemoViewController : UIViewController<FlowCoverViewDelegate, FCImageCacheDelegate>
 {
   NSMutableArray *images;
   
@@ -30,6 +31,7 @@
   FlowCoverViewGL *flowCover;
   UILabel *valuesLabel;
   UISegmentedControl *presets;
+  FCImageCache *imageCache;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *settingsView;

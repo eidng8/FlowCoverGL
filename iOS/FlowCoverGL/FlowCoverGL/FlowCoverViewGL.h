@@ -7,7 +7,7 @@
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
-#import "DataCache.h"
+#import "FCDataCache.h"
 
 /**
  * @brief Determines whether tiles are arranged horizontally or vertically.
@@ -173,7 +173,7 @@ typedef enum
   /**
    * @brief The texture reference cache.
    */
-  DataCache *cache;
+  FCDataCache *cache;
 
   /**
    * @brief OpenGL ES render buffer width.
@@ -301,6 +301,12 @@ typedef enum
  * @brief Draws the FlowCover view with current state.
  */
 - (void)redraw;
+
+/**
+ * @brief Updates the image at the specified index.
+ * @param[in] index Index to the image to be updated.
+ */
+- (void)updateImageAtIndex:(int)index;
 
 @end
 

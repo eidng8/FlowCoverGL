@@ -2,10 +2,10 @@
  * @brief Implementation of DataCache interface.
  * @author Jackey Cheung
  */
-#import "DataCache.h"
+#import "FCDataCache.h"
 
 
-@implementation DataCache
+@implementation FCDataCache
 
 
 - (id)initWithCapacity:(int)cap
@@ -58,5 +58,27 @@
   }
   [fDictionary setObject:value forKey:key];
 }  /* setObject */
+
+- (void)removeObjectForKey:(id)key
+{
+  NSUInteger index = [fAge indexOfObject:key];
+  if(index != NSNotFound)
+  {
+    [fAge removeObjectAtIndex:index];
+    [fDictionary removeObjectForKey:key];
+  }
+}
+
+- (void)truncateToSize:(int)size
+{
+  id delKey;
+  while([fAge count] > size)
+  {
+    delKey = [fAge lastObject];
+    [fDictionary removeObjectForKey:delKey];
+    [fAge removeLastObject];
+  }
+}
+
 
 @end

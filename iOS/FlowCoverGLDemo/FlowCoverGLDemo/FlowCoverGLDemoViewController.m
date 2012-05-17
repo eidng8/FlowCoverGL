@@ -38,7 +38,7 @@
 
 - (UIImage *)flowCover:(FlowCoverViewGL *)view cover:(int)cover
 {
-  return [images objectAtIndex:cover];
+  return [imageCache imageAtPath:[images objectAtIndex:cover] async:YES];
 }
 
 - (void)flowCover:(FlowCoverViewGL *)view didSelect:(int)cover
@@ -183,17 +183,29 @@
   [flowCover redraw];
 }
 
+- (void)imageCache:(FCImageCache*)cache didLoadImage:(UIImage*)image fromPath:(NSString*)path
+{
+  [flowCover updateImageAtIndex:[images indexOfObject:path]];
+  [flowCover redraw];
+}
+
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
   [super viewDidLoad];
 
-  // Load all images to memory
-  images = [[NSMutableArray alloc] initWithCapacity:10];
-  for(int i = 0; i < 10; i++)
-    [images addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg", i]]];
+  // create image cache
+  imageCache = [[FCImageCache alloc] initWithCapacity:10 imageNamed:@"loading.jpg"];
+  imageCache.delegate = self;
 
+  // prepare images
+  images = [[NSMutableArray arrayWithCapacity:10] retain];
+  NSString *path = [[NSBundle mainBundle] resourcePath];
+  for(int i = 0; i < 10; i++)
+    [images addObject:[NSString stringWithFormat:@"%@/%d.jpg", path, i]];
+
+  // initialize Flow Cover
   flowCover.focusedIndex = [images count] / 2;
   flowCover.imageSize = CGSizeMake(390, 450);
 }

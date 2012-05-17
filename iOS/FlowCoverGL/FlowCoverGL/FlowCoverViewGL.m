@@ -308,7 +308,7 @@ const GLfloat GReflectionBottom[] =
   }
   self.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
 
-  cache  = [[DataCache alloc] initWithCapacity:MAXTILES];
+  cache  = [[FCDataCache alloc] initWithCapacity:MAXTILES];
   offset = 0;
 
   return self;
@@ -470,6 +470,11 @@ static void *GData = NULL;
   return fcr;
 }  /* getTileAtIndex */
 
+- (void)updateImageAtIndex:(int)index
+{
+  [cache removeObjectForKey:[NSNumber numberWithInt:index]];
+}
+
 
 #pragma mark - Drawing
 
@@ -625,9 +630,6 @@ static void *GData = NULL;
       flowCover:self didFocus:index];
 }  /* drawTile */
 
-/**
- * @brief Renders the view.
- */
 - (void)redraw
 {
   /* Get the current aspect ratio and initialize the viewport */
