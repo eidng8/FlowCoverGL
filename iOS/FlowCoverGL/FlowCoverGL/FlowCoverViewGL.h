@@ -1,5 +1,5 @@
 /**
- * @brief Header file of the FlowCoverView interface.
+ * @brief Header file of the  interface.
  * @author Jackey Cheung
  */
 #import <UIKit/UIKit.h>
@@ -83,7 +83,7 @@ typedef enum
 }FlowCoverReflection;
 
 
-@protocol FlowCoverViewDelegate;
+@protocol FlowCoverViewGLDelegate;
 
 
 /**
@@ -99,10 +99,22 @@ typedef enum
 @interface FlowCoverViewGL : UIView
 {
   /**
+   * @brief Pointer to the image buffer.
+   */
+  void *cgData;
+  
+  /**
+   * @brief Tile vertex coordinates.
+   */
+  GLfloat vertices[12];
+  /**
    * @brief Index of the focused tile.
    */
   double offset;
-
+  /**
+   * @brief Number of visible tiles.
+   */
+  int numVisibleTile;
   /**
    * @brief
    * Screen display ratio reference, for scaling objects to fit viewport.
@@ -168,7 +180,7 @@ typedef enum
   /**
    * @brief Stores the delgate object.
    */
-  IBOutlet id<FlowCoverViewDelegate> delegate;
+  IBOutlet id<FlowCoverViewGLDelegate> delegate;
 
   /**
    * @brief The texture reference cache.
@@ -248,19 +260,23 @@ typedef enum
 }
 
 /**
+ * @brief Number of visible tiles.
+ */
+@property (nonatomic, assign, setter = setNumVisibleTile:) int numVisibleTile;
+/**
  * @brief Stores the delgate object.
  */
-@property (nonatomic, assign) id<FlowCoverViewDelegate> delegate;
+@property (nonatomic, assign) id<FlowCoverViewGLDelegate> delegate;
 /**
- *
+ * @brief Stores the tile arrangement setting.
  */
 @property (nonatomic, assign) FlowCoverSwipeDirection direction;
 /**
- *
+ * @brief Stores the tile facing setting.
  */
 @property (nonatomic, assign) FlowCoverFacing facing;
 /**
- *
+ * @brief Stores the tile refleciton setting.
  */
 @property (nonatomic, assign) FlowCoverReflection reflection;
 /**
@@ -312,33 +328,33 @@ typedef enum
 
 
 /**
- * @brief The delegate gets called by the FlowCoverView.
+ * @brief The delegate gets called by the .
  * @details
  * Provides the interface for the delegate used by FlowCoverGL. This provides
  * a way for the view to get images, to get the total number of images, and to
  * send messages.
  */
-@protocol FlowCoverViewDelegate<NSObject>
+@protocol FlowCoverViewGLDelegate<NSObject>
 /**
  * @brief Returns the number of images to be shown in the view.
- * @param[in] view Pointer to the hosting FlowCoverView.
+ * @param[in] view Pointer to the hosting .
  * @returns The number of images to be shown in the view.
  */
-- (int)flowCoverNumberImages:(FlowCoverViewGL*)view;
+- (int)flowCoverGLNumOfImages:(FlowCoverViewGL*)view;
 /**
  * @brief Returns the image at the given position.
- * @param[in] view Pointer to the hosting FlowCoverView.
+ * @param[in] view Pointer to the hosting .
  * @param[in] cover The 0-based index the image to be retrieved.
  * @returns Pointer to the images retrieved.
  */
-- (UIImage*)flowCover:(FlowCoverViewGL *)view cover:(int)cover;
+- (UIImage*)flowCoverGL:(FlowCoverViewGL*)view cover:(int)cover;
+@optional
 /**
  * @brief This is called when use press a tile in the view.
- * @param[in] view Pointer to the hosting FlowCoverView.
+ * @param[in] view Pointer to the hosting .
  * @param[in] cover The 0-based index the pressed tile.
  */
-- (void)flowCover:(FlowCoverViewGL *)view didSelect:(int)cover;
-@optional
+- (void)flowCoverGL:(FlowCoverViewGL*)view didSelect:(int)cover;
 /**
  * @brief This is called when use a tile becomes focused.
  *
@@ -346,19 +362,19 @@ typedef enum
  * The focused tile is the largest one at the center of the view, which will
  * always face forward despite of settings.
  *
- * @param[in] view Pointer to the hosting FlowCoverView.
+ * @param[in] view Pointer to the hosting .
  * @param[in] cover The 0-based index the focused tile.
  */
-- (void)flowCover:(FlowCoverViewGL *)view didFocus:(int)cover;
+- (void)flowCoverGL:(FlowCoverViewGL*)view didFocus:(int)cover;
 /**
  * @brief This is called when the view is dragged by user and starts rolling.
- * @param[in] view Pointer to the FlowCoverView that starts rolling.
+ * @param[in] view Pointer to the  that starts rolling.
  */
-- (void)flowCoverWillBeginRolling:(FlowCoverViewGL *)view;
+- (void)flowCoverGLWillBeginRolling:(FlowCoverViewGL*)view;
 /**
  * @brief This is called when the view is dragged by user and stops rolling.
- * @param[in] view Pointer to the FlowCoverView that stops rolling.
+ * @param[in] view Pointer to the  that stops rolling.
  */
-- (void)flowCoverWillEndRolling:(FlowCoverViewGL *)view;
+- (void)flowCoverGLWillEndRolling:(FlowCoverViewGL*)view;
 @end
 

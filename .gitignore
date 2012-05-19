@@ -1,0 +1,9 @@
+.*
+*.xcuserstate
+*.xcsettings
+*.xcbkptlist
+*.xcscheme
+*.xcuserdatad/
+*.xcworkspace/
+xcuserdata/
+!.gitignore

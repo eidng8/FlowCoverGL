@@ -1,5 +1,5 @@
 /**
- * @brief Implementation of FlowCoverView interface.
+ * @brief Implementation of  interface.
  * @author Jackey Cheung
  */
 #import "FlowCoverViewGL.h"
@@ -39,7 +39,7 @@
 /**
  * @brief Quad array of tiles.
  */
-GLfloat GVertices[] =
+const GLfloat GVertices[] =
 {
   -1.0f, -1.0f,  0.0f,
   1.0f,  -1.0f,  0.0f,
@@ -161,6 +161,7 @@ const GLfloat GReflectionBottom[] =
 @synthesize depthSpread;
 @synthesize alphaSpread;
 @synthesize focusedIndex;
+@synthesize numVisibleTile;
 
 
 #pragma mark - OpenGL ES Support
@@ -206,8 +207,7 @@ const GLfloat GReflectionBottom[] =
     GL_FRAMEBUFFER_COMPLETE_OES)
   {
     #if TARGET_IPHONE_SIMULATOR
-    NSLog(@"failed to make complete framebuffer object %x",
-      glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
+    NSLog(@"failed to make complete framebuffer object %x", glCheckFramebufferStatusOES(GL_FRAMEBUFFER_OES));
     #endif
     return NO;
   }
@@ -243,36 +243,6 @@ const GLfloat GReflectionBottom[] =
   [self redraw];
 }
 
-/**
- * @brief Sets image size, and alter tile model accordingly.
- * @param[in] size Image size to be used.
- */
-- (void)setImageSize:(CGSize)size
-{
-  imageSize    = size;
-  textureRange = TEXTURE_MINSIZE;
-  while(imageSize.width > textureRange || imageSize.height >
-    textureRange) textureRange *= 2;
-  if(imageSize.width > imageSize.height)
-  {
-    tileOriginX  = -1;
-    tileOriginY  = -imageSize.height / (float)imageSize.width;
-    GVertices[0] = GVertices[6] = tileOriginX;
-    GVertices[3] = GVertices[9] = -tileOriginX;
-    GVertices[1] = GVertices[4] = tileOriginY;
-    GVertices[7] = GVertices[10] = -tileOriginY;
-  }
-  else
-  {
-    tileOriginY  = -1;
-    tileOriginX  = -imageSize.width / (float)imageSize.height;
-    GVertices[1] = GVertices[4] = tileOriginY;
-    GVertices[7] = GVertices[10] = -tileOriginY;
-    GVertices[0] = GVertices[6] = tileOriginX;
-    GVertices[3] = GVertices[9] = -tileOriginX;
-  }
-}  /* setImageSize */
-
 
 #pragma mark - Construction / Destruction
 
@@ -286,16 +256,20 @@ const GLfloat GReflectionBottom[] =
 {
   CAEAGLLayer *eaglLayer;
 
-  eaglLayer = (CAEAGLLayer *)self.layer;
+  eaglLayer = (CAEAGLLayer*)self.layer;
   eaglLayer.opaque = YES;
 
   CGSize screenSize = [[UIScreen mainScreen] bounds].size;
   screenDisplayRatio = screenSize.width / screenSize.height;
 
+  cgData = NULL;
+  memcpy(vertices, GVertices, sizeof(GVertices));
+  
   alphaSpread    = 0;
   depthSpread    = 0;
   imageSpread    = .1;
   imageRotation  = .4;
+  numVisibleTile = VISTILES;
   reflection     = FlowCoverReflectOnBottom;
   self.imageSize = CGSizeMake(TEXTURE_DEFAULT_SIZE, TEXTURE_DEFAULT_SIZE);
 
@@ -320,7 +294,7 @@ const GLfloat GReflectionBottom[] =
   return self;
 }
 
-- (id)initWithCoder:(NSCoder *)coder
+- (id)initWithCoder:(NSCoder*)coder
 {
   if((self = [super initWithCoder:coder])) self = [self internalInit];
   return self;
@@ -352,7 +326,7 @@ const GLfloat GReflectionBottom[] =
  */
 - (int)numTiles
 {
-  if(delegate) return [delegate flowCoverNumberImages:self];
+  if(delegate) return [delegate flowCoverGLNumOfImages:self];
   else return 0;
 }
 
@@ -363,7 +337,7 @@ const GLfloat GReflectionBottom[] =
  */
 - (UIImage*)tileImage:(int)image
 {
-  if(delegate) return [delegate flowCover:self cover:image];
+  if(delegate) return [delegate flowCoverGL:self cover:image];
 
   else return nil;  /* should never happen */
 }
@@ -374,7 +348,7 @@ const GLfloat GReflectionBottom[] =
  */
 - (void)touchAtIndex:(int)index
 {
-  if(delegate) [delegate flowCover:self didSelect:index];
+  if(delegate) [delegate flowCoverGL:self didSelect:index];
 }
 
 
@@ -398,26 +372,51 @@ const GLfloat GReflectionBottom[] =
   offset = index;
 }
 
+/**
+ * @brief Sets image size, and alter tile model accordingly.
+ * @param[in] size Image size to be used.
+ */
+- (void)setImageSize:(CGSize)size
+{
+  imageSize    = size;
+  textureRange = TEXTURE_MINSIZE;
+  while(imageSize.width > textureRange || imageSize.height >
+        textureRange) textureRange *= 2;
+  if(imageSize.width > imageSize.height)
+  {
+    tileOriginX  = -1;
+    tileOriginY  = -imageSize.height / (float)imageSize.width;
+    vertices[0] = vertices[6] = tileOriginX;
+    vertices[3] = vertices[9] = -tileOriginX;
+    vertices[1] = vertices[4] = tileOriginY;
+    vertices[7] = vertices[10] = -tileOriginY;
+  }
+  else
+  {
+    tileOriginY  = -1;
+    tileOriginX  = -imageSize.width / (float)imageSize.height;
+    vertices[1] = vertices[4] = tileOriginY;
+    vertices[7] = vertices[10] = -tileOriginY;
+    vertices[0] = vertices[6] = tileOriginX;
+    vertices[3] = vertices[9] = -tileOriginX;
+  }
+}  /* setImageSize */
+
 
 #pragma mark - Tile Management
-/**
- * @brief Pointer to the image buffer.
- */
-static void *GData = NULL;
-
 /**
  * @brief Converts image to texture.
  * @param[in] image The image to be converted.
  * @returns Texture ID created from the image.
  */
-- (GLuint)imageToTexture:(UIImage *)image
+- (GLuint)imageToTexture:(UIImage*)image
 {
   /* Set up off screen drawing */
   CGSize size = image.size;
 
-  if(GData == NULL) GData = malloc(4 * size.width * size.height);
+  if(cgData == NULL) cgData = malloc(4 * size.width * size.height);
   CGColorSpaceRef cref = CGColorSpaceCreateDeviceRGB();
-  CGContextRef gc = CGBitmapContextCreate(GData, size.width, size.height, 8,
+  CGContextRef gc = CGBitmapContextCreate(cgData, size.width, size.height, 8,
     size.width * 4, cref, kCGImageAlphaPremultipliedLast);
   CGColorSpaceRelease(cref);
   UIGraphicsPushContext(gc);
@@ -436,15 +435,15 @@ static void *GData = NULL;
   [EAGLContext setCurrentContext:context];
   glBindTexture(GL_TEXTURE_2D, texture);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA,
-    GL_UNSIGNED_BYTE, GData);
+    GL_UNSIGNED_BYTE, cgData);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
   /* clean up */
-  free(GData);
-  GData = NULL;
+  free(cgData);
+  cgData = NULL;
 
   return texture;
 }  /* imageToTexture */
@@ -487,7 +486,7 @@ static void *GData = NULL;
 {
   FlowCoverRecord *fcr = [self getTileAtIndex:index];
   double f = off * imageRotation;
-
+  
   if(f < -imageRotation) f = -imageRotation;
   else if(f > imageRotation) f = imageRotation;
 
@@ -626,8 +625,7 @@ static void *GData = NULL;
   glPopMatrix();
   if((0 == off) && delegate &&
     [delegate respondsToSelector:@selector(flowCover:didFocus:)])
-    [delegate
-      flowCover:self didFocus:index];
+    [delegate flowCoverGL:self didFocus:index];
 }  /* drawTile */
 
 - (void)redraw
@@ -639,7 +637,7 @@ static void *GData = NULL;
   glDisable(GL_DEPTH_TEST);        /* using painters algorithm */
 
   glClearColor(0, 0, 0, 0);
-  glVertexPointer(3, GL_FLOAT, 0, GVertices);
+  glVertexPointer(3, GL_FLOAT, 0, vertices);
   glEnableClientState(GL_VERTEX_ARRAY);
   glTexCoordPointer(2, GL_SHORT, 0, GTextures);
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -660,23 +658,19 @@ static void *GData = NULL;
   glScalef(1, aspect, 1);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  glScalef(screenDisplayRatio / aspect,
-    screenDisplayRatio / aspect,
-    screenDisplayRatio);
+  glScalef(screenDisplayRatio / aspect, screenDisplayRatio / aspect, screenDisplayRatio);
 
   /*
    * Change from Alesandro Tagliati <alessandro.tagliati@gmail.com>:
-   * We don't need to draw all the tiles, just the visible ones. We guess
-   * there are 6 tiles visible; that can be adjusted by altering the
-   * constant
+   * We don't need to draw all the tiles, just the visible ones.
    */
   int i, len = [self numTiles];
-  int mid       = (int)floor(offset + 0.5);
-  int iStartPos = mid - VISTILES;
+  int mid = (int)floor(offset + 0.5);
+  int iStartPos = mid - numVisibleTile / 2;
   if(iStartPos < 0) iStartPos = 0;
   for(i = iStartPos; i < mid; i++) [self drawTile:i atOffset:i - offset];
 
-  int iEndPos = mid + VISTILES;
+  int iEndPos = mid + numVisibleTile / 2;
   if(iEndPos >= len) iEndPos = len - 1;
   for(i = iEndPos; i >= mid; i--) [self drawTile:i atOffset:i - offset];
 
@@ -726,9 +720,7 @@ static void *GData = NULL;
   {
     if(delegate &&
       [delegate respondsToSelector:@selector(flowCoverWillEndRolling:)])
-      [
-        delegate
-        flowCoverWillEndRolling:self];
+      [delegate flowCoverGLWillEndRolling:self];
     beganRolling = NO;
   }
 }  /* endAnimation */
@@ -774,7 +766,7 @@ static void *GData = NULL;
 
 #pragma mark - Touch
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
   CGRect r      = self.bounds;
   UITouch *t    = [touches anyObject];
@@ -795,7 +787,7 @@ static void *GData = NULL;
   [self endAnimation];
 }  /* touchesBegan */
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
   CGRect r      = self.bounds;
   UITouch *t    = [touches anyObject];
@@ -833,14 +825,12 @@ static void *GData = NULL;
   }
 }  /* touchesEnded */
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event
 {
   if(!beganRolling)
   {
-    if(delegate &&
-      [delegate respondsToSelector:@selector(flowCoverWillBeginRolling:)])
-      [
-        delegate flowCoverWillBeginRolling:self];
+    if(delegate && [delegate respondsToSelector:@selector(flowCoverGLWillBeginRolling:)])
+      [delegate flowCoverGLWillBeginRolling:self];
     beganRolling = YES;
   }
   CGRect r      = self.bounds;

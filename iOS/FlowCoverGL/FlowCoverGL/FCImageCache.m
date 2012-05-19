@@ -55,18 +55,26 @@
 
 - (UIImage*)imageAtPath:(NSString*)path
 {
-  return [self objectForKey:path];
+  return [self imageAtPath:path async:NO];
 }
 
 - (UIImage*)imageAtPath:(NSString*)path async:(BOOL)async
 {
   UIImage *p = [self objectForKey:path];
-  if(!p && async)
+  if(!p)
   {
-    p = loadingPlaceHolder;
-    [loadingQueue enqueue:path];
-    if(!workerStarted)
-      [NSThread detachNewThreadSelector:@selector(worker:) toTarget:self withObject:loadingQueue];
+    if(async)
+    {
+      p = loadingPlaceHolder;
+      [loadingQueue enqueue:path];
+      if(!workerStarted)
+        [NSThread detachNewThreadSelector:@selector(worker:) toTarget:self withObject:loadingQueue];
+    }
+    else
+    {
+      p = [UIImage imageWithContentsOfFile:path];
+      [self setObject:p forKey:path];
+    }
   }
   return p;
 }
@@ -89,6 +97,7 @@
  */
 - (void)worker:(FCQueue*)queue
 {
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   UIImage *image;
   NSString *path;
   workerStarted = YES;
@@ -103,6 +112,7 @@
     }
     [NSThread sleepForTimeInterval:.01];
   }
+  [pool release];
 }
 
 
