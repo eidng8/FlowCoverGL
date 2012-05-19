@@ -31,32 +31,32 @@
 
 
 #pragma mark - Flow Cover Related
-- (int)flowCoverNumberImages:(FlowCoverViewGL *)view
+- (int)flowCoverGLNumOfImages:(FlowCoverViewGL*)view
 {
   return [images count];
 }
 
-- (UIImage *)flowCover:(FlowCoverViewGL *)view cover:(int)cover
+- (UIImage*)flowCoverGL:(FlowCoverViewGL*)view cover:(int)cover
 {
   return [imageCache imageAtPath:[images objectAtIndex:cover] async:YES];
 }
 
-- (void)flowCover:(FlowCoverViewGL *)view didSelect:(int)cover
+- (void)flowCoverGL:(FlowCoverViewGL*)view didSelect:(int)cover
 {
   // nothing here yet.
 }
 
-- (void)flowCover:(FlowCoverViewGL*)view didFocus:(int)cover
+- (void)flowCoverGL:(FlowCoverViewGL*)view didFocus:(int)cover
 {
   // nothing here yet.
 }
 
-- (void)flowCoverWillBeginRolling:(FlowCoverViewGL*)view
+- (void)flowCoverGLWillBeginRolling:(FlowCoverViewGL*)view
 {
   settingsButton.hidden = presets.hidden = hideSettings.on;
 }
 
-- (void)flowCoverWillEndRolling:(FlowCoverViewGL*)view
+- (void)flowCoverGLWillEndRolling:(FlowCoverViewGL*)view
 {
   settingsButton.hidden = presets.hidden = NO;
 }

@@ -78,7 +78,7 @@
 		498F7BD21556BEA200D6351D /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		498F7BD31556BEA200D6351D /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		498F7BD41556BEA200D6351D /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
-		49D551A715541E32001362B0 /* loading.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = loading.jpg; path = "../../../../../../../../../Volumes/VM share/Mac/FlowCoverGL/iOS/FlowCoverGLDemo/FlowCoverGLDemo/images/loading.jpg"; sourceTree = "<group>"; };
+		49D551A715541E32001362B0 /* loading.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = loading.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -12,7 +12,7 @@
 #import "FlowCoverViewGL.h"
 
 
-@interface FlowCoverGLDemoViewController : UIViewController<FlowCoverViewDelegate, FCImageCacheDelegate>
+@interface FlowCoverGLDemoViewController : UIViewController<FlowCoverViewGLDelegate, FCImageCacheDelegate>
 {
   NSMutableArray *images;
   

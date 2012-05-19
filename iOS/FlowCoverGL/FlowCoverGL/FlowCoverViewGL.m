@@ -718,8 +718,7 @@ const GLfloat GReflectionBottom[] =
   }
   if(beganRolling)
   {
-    if(delegate &&
-      [delegate respondsToSelector:@selector(flowCoverWillEndRolling:)])
+    if(delegate && [delegate respondsToSelector:@selector(flowCoverGLWillEndRolling:)])
       [delegate flowCoverGLWillEndRolling:self];
     beganRolling = NO;
   }
