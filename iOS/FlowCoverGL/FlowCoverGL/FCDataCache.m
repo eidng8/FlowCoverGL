@@ -69,6 +69,12 @@
   }
 }
 
+- (void)removeAllObjects
+{
+  [fAge removeAllObjects];
+  [fDictionary removeAllObjects];
+}
+
 - (void)truncateToSize:(int)size
 {
   id delKey;

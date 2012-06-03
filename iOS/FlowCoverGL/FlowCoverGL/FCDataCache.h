@@ -66,6 +66,11 @@
 - (void)removeObjectForKey:(id)key;
 
 /**
+ * @brief Removes all items .
+ */
+- (void)removeAllObjects;
+
+/**
  * @brief Trancates the cache to left only specified number of objects.
  * @param[in] size The number of objects to be left in the cache.
  */

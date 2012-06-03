@@ -73,6 +73,7 @@
     else
     {
       p = [UIImage imageWithContentsOfFile:path];
+      if(!p) p = loadingPlaceHolder;
       [self setObject:p forKey:path];
     }
   }

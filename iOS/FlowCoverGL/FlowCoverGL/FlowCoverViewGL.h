@@ -319,10 +319,15 @@ typedef enum
 - (void)redraw;
 
 /**
- * @brief Updates the image at the specified index.
- * @param[in] index Index to the image to be updated.
+ * @brief Force reloading of an image by removing it from the cache.
+ * @param[in] index Index to the image to be invalidated.
  */
-- (void)updateImageAtIndex:(int)index;
+- (void)invalidateImageAtIndex:(int)index;
+
+/**
+ * @brief Force reloading of all images by clearing the cache.
+ */
+- (void)invalidateAllImages;
 
 @end
 
@@ -340,7 +345,7 @@ typedef enum
  * @param[in] view Pointer to the hosting .
  * @returns The number of images to be shown in the view.
  */
-- (int)flowCoverGLNumOfImages:(FlowCoverViewGL*)view;
+- (int)flowCoverGLNumberOfImages:(FlowCoverViewGL*)view;
 /**
  * @brief Returns the image at the given position.
  * @param[in] view Pointer to the hosting .

@@ -290,13 +290,15 @@ const GLfloat GReflectionBottom[] =
 
 - (id)initWithFrame:(CGRect)frame
 {
-  if((self = [super initWithFrame:frame])) self = [self internalInit];
+  if((self = [super initWithFrame:frame]))
+    self = [self internalInit];
   return self;
 }
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-  if((self = [super initWithCoder:coder])) self = [self internalInit];
+  if((self = [super initWithCoder:coder]))
+    self = [self internalInit];
   return self;
 }
 
@@ -326,7 +328,7 @@ const GLfloat GReflectionBottom[] =
  */
 - (int)numTiles
 {
-  if(delegate) return [delegate flowCoverGLNumOfImages:self];
+  if(delegate) return [delegate flowCoverGLNumberOfImages:self];
   else return 0;
 }
 
@@ -469,9 +471,14 @@ const GLfloat GReflectionBottom[] =
   return fcr;
 }  /* getTileAtIndex */
 
-- (void)updateImageAtIndex:(int)index
+- (void)invalidateImageAtIndex:(int)index
 {
   [cache removeObjectForKey:[NSNumber numberWithInt:index]];
+}
+
+- (void)invalidateAllImages
+{
+  [cache removeAllObjects];
 }
 
 
@@ -624,7 +631,7 @@ const GLfloat GReflectionBottom[] =
 
   glPopMatrix();
   if((0 == off) && delegate &&
-    [delegate respondsToSelector:@selector(flowCover:didFocus:)])
+    [delegate respondsToSelector:@selector(flowCoverGL:didFocus:)])
     [delegate flowCoverGL:self didFocus:index];
 }  /* drawTile */
 

@@ -31,7 +31,7 @@
 
 
 #pragma mark - Flow Cover Related
-- (int)flowCoverGLNumOfImages:(FlowCoverViewGL*)view
+- (int)flowCoverGLNumberOfImages:(FlowCoverViewGL*)view
 {
   return [images count];
 }
@@ -185,7 +185,7 @@
 
 - (void)imageCache:(FCImageCache*)cache didLoadImage:(UIImage*)image fromPath:(NSString*)path
 {
-  [flowCover updateImageAtIndex:[images indexOfObject:path]];
+  [flowCover invalidateImageAtIndex:[images indexOfObject:path]];
   [flowCover redraw];
 }
 
